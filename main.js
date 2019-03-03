@@ -1,21 +1,45 @@
 let todo = [];
-let tasknum = -1;
+let tasknum = 0;
+let inputnum = 0;
+let listnum = 0;
 
-function displayedTodo(){
-    $(".task-box").html("");
-    for( i = 0; i < todo.length; i++){
-        tasknum++;
-        $(".task-box").append("<div class='task'"+ tasknum +">" +
-            todo[i] +
-            "</div>");
-        $(".input").val("");
-        $(".input").focus();
+function addTodo(val, event){
+    switch(event.which) {
+        case 13:
+            tasknum++;
+            if (val != "") {
+                $(".task-box").append("<div class='task" + tasknum + "'>" +
+                    val +
+                    "<i class='fas fa-plus-square' onclick='addInput(" + tasknum + ")'></i>" +
+                    "<i class='fas fa-minus-square' onclick='deletetask(" + tasknum + ")'></i>" +
+                    "</div>");
+                $(".input").val("");
+                $(".input").focus();
+                todo.push(val);
+                console.log(todo);
+                break;
+            }
     }
 }
 
-function addToDo(text){
-    let todoTask = $(text).val();
-        todo.push(todoTask);
-        displayedTodo();
-        console.log(todo);
+function addInput(inputid){
+    inputnum ++;
+    $('.task' + inputid).append("<div class='task-input" + inputnum + "'>" +
+        "<input type='text' placeholder='Add list' onkeyup='addList("+ listnum +", this.value, event)'/>" +
+        "</div>");
+}
+
+function deletetask(taskid){
+    $(".task" + taskid).remove();
+}
+
+function addList(listid, val, event){
+    switch(event.which){
+        case 13:
+            listnum ++;
+            $('.task' + listid).append("<div class='list" + listnum + "'>" +
+                val +
+                "</div>");
+            break;
+    }
 }
