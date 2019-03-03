@@ -1,12 +1,15 @@
 let todo = [];
+let tasknum = -1;
 
 function displayedTodo(){
     $(".task-box").html("");
     for( i = 0; i < todo.length; i++){
-        $(".task-box").append("<div>" +
+        tasknum++;
+        $(".task-box").append("<div class='task'"+ tasknum +">" +
             todo[i] +
             "</div>");
         $(".input").val("");
+        $(".input").focus();
     }
 }
 
