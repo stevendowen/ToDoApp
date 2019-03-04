@@ -1,31 +1,33 @@
 let todo = [];
+let list = [];
 let tasknum = 0;
 let inputnum = 0;
 let listnum = 0;
 
-function addTodo(val, event){
-    switch(event.which) {
-        case 13:
-            tasknum++;
-            if (val != "") {
-                $(".task-box").append("<div contenteditable='true' class='task" + tasknum + "'>" +
-                    val +
-                    "<i class='fas fa-plus-square' onclick='addInput(" + tasknum + ")'></i>" +
-                    "<i class='fas fa-minus-square' onclick='deletetask(" + tasknum + ")'></i>" +
-                    "</div>");
-                $(".input").val("");
-                $(".input").focus();
-                todo.push(val);
-                console.log(todo);
-                break;
-            }
+function addTodo() {
+    let myval = $(".input").val();
+    tasknum++;
+    if (myval != "") {
+        $(".task-box").append("<div class='task" + tasknum + "'>" +
+            "<h6 contenteditable='true'>" +
+            myval +
+            "</h6>" +
+            "<div class='icons'>" +
+            "<i class='fas fa-plus-square' onclick='addInput(" + tasknum + ")'></i>" +
+            "<i class='fas fa-minus-square' onclick='deletetask(" + tasknum + ")'></i>" +
+            "</div>" +
+            "</div>");
+        $(".input").val("");
+        $(".input").focus();
+        todo.push(myval);
+        console.log(todo);
     }
 }
 
 function addInput(inputid){
     inputnum++;
     $('.task' + inputid).append("<div class='task-input" + inputnum + "'>" +
-        "<input type='text' placeholder='Add list' onkeyup='addList(" + inputnum + ", this.value, event)'/>" +
+        "<input class='input1' type='text' placeholder='Add list' onkeyup='addList(" + inputnum + ", this.value, event)'/>" +
         "</div>");
 }
 
@@ -36,9 +38,19 @@ function deletetask(taskid){
 function addList(listid, val, event){
     switch(event.which){
         case 13:
-            $('.task-input' + listid).append("<div contenteditable='true'>" +
+            listnum ++;
+            $('.task-input' + listid).append("<div class='list" + listnum + "' contenteditable='true'>" +
                 val +
                 "</div>");
+            $(".input1").val("");
+            break;
+    }
+}
+
+function addKey(val, event){
+    switch(event.which){
+        case 13:
+            addTodo(val);
             break;
     }
 }
