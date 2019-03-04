@@ -23,9 +23,9 @@ function addTodo(val, event){
 }
 
 function addInput(inputid){
-    inputnum ++;
+    inputnum++;
     $('.task' + inputid).append("<div class='task-input" + inputnum + "'>" +
-        "<input type='text' placeholder='Add list' onkeyup='addList("+ listnum +", this.value, event)'/>" +
+        "<input type='text' placeholder='Add list' onkeyup='addList(" + inputnum + ", this.value, event)'/>" +
         "</div>");
 }
 
@@ -36,8 +36,7 @@ function deletetask(taskid){
 function addList(listid, val, event){
     switch(event.which){
         case 13:
-            listnum ++;
-            $('.task' + listid).append("<div class='list" + listnum + "'>" +
+            $('.task-input' + listid).append("<div>" +
                 val +
                 "</div>");
             break;
