@@ -8,7 +8,7 @@ function addTodo(val, event){
         case 13:
             tasknum++;
             if (val != "") {
-                $(".task-box").append("<div class='task" + tasknum + "'>" +
+                $(".task-box").append("<div contenteditable='true' class='task" + tasknum + "'>" +
                     val +
                     "<i class='fas fa-plus-square' onclick='addInput(" + tasknum + ")'></i>" +
                     "<i class='fas fa-minus-square' onclick='deletetask(" + tasknum + ")'></i>" +
@@ -36,7 +36,7 @@ function deletetask(taskid){
 function addList(listid, val, event){
     switch(event.which){
         case 13:
-            $('.task-input' + listid).append("<div>" +
+            $('.task-input' + listid).append("<div contenteditable='true'>" +
                 val +
                 "</div>");
             break;
