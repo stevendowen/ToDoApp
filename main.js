@@ -1,5 +1,4 @@
-let todo = [];
-let list = [];
+let todo = retrieveTodo() || [];
 let tasknum = 0;
 let inputnum = 0;
 let listnum = 0;
@@ -20,6 +19,7 @@ function addTodo() {
         $(".input").val("");
         $(".input").focus();
         todo.push(myval);
+        saveTodo();
         console.log(todo);
     }
 }
@@ -53,4 +53,13 @@ function addKey(val, event){
             addTodo(val);
             break;
     }
+}
+
+function saveTodo(){
+    localStorage.setItem("todos", JSON.stringify(todo));
+}
+
+function retrieveTodo(){
+    const todosString = localStorage.getItem("todos");
+    return JSON.parse(todosString);
 }
