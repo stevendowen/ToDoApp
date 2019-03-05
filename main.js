@@ -7,13 +7,19 @@ function addTodo() {
     let myval = $(".input").val();
     tasknum++;
     if (myval != "") {
-        $(".task-box").append("<div class='task" + tasknum + "'>" +
-            "<h6 contenteditable='true'>" +
-            myval +
-            "</h6>" +
-            "<div class='icons'>" +
+        $(".task-box").append("<div class='demo-card-wide mdl-card mdl-shadow--2dp'>" +
+            "<div class='mdl-card__title'>" +
+            "<h2 contenteditable='true' class='mdl-card__title-text'>" + myval + "</h2>" +
+            "</div>" +
+            "<div class='mdl-card__supporting-text'>" +
             "<i class='fas fa-plus-square' onclick='addInput(" + tasknum + ")'></i>" +
             "<i class='fas fa-minus-square' onclick='deletetask(" + tasknum + ")'></i>" +
+            "</div>" +
+            "<div class='mdl-card__actions mdl-card--border'>" +
+            "<div class='task" + tasknum + "'>" + "</div>" +
+            "</div>" +
+            "<div class='mdl-card__menu'>" +
+            "<input type='checkbox'/>" +
             "</div>" +
             "</div>");
         $(".input").val("");
