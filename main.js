@@ -1,8 +1,3 @@
-let todo = retrieveTodo() || [];
-let tasknum = 0;
-let inputnum = 0;
-let listnum = 0;
-
 function addTodo() {
     let myval = $(".input").val();
     tasknum++;
@@ -13,13 +8,13 @@ function addTodo() {
             "</div>" +
             "<div class='mdl-card__supporting-text'>" +
             "<i class='fas fa-plus-square' onclick='addInput(" + tasknum + ")'></i>" +
-            "<i class='fas fa-minus-square' onclick='deletetask(" + tasknum + ")'></i>" +
             "</div>" +
             "<div class='mdl-card__actions mdl-card--border'>" +
             "<div class='task" + tasknum + "'>" + "</div>" +
             "</div>" +
             "<div class='mdl-card__menu'>" +
-            "<input type='checkbox'/>" +
+            "<i class='fas fa-minus-square' onclick='deleteTask(" + tasknum + ")'></i>" +
+            "<input class='checkbox' type='checkbox'/>" +
             "</div>" +
             "</div>");
         $(".input").val("");
@@ -37,8 +32,12 @@ function addInput(inputid){
         "</div>");
 }
 
-function deletetask(taskid){
+function deleteTask(taskid){
     $(".task" + taskid).remove();
+}
+
+function deleteList(taskid){
+    $(".list" + taskid).remove();
 }
 
 function addList(listid, val, event){
