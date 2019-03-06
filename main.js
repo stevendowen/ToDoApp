@@ -1,3 +1,16 @@
+(function(){
+    if(localStorage.allTodos){
+        let todos = JSON.parse(localStorage.allTodos);
+        for(let l = 0; l < todos.length; l++){
+            myTodos.add(todos[l].name);
+            for(let t = 0; t < todos[l].tasks.length; t++){
+                myTodos.container[l].add(todos[l].tasks[t].name, todos[l].tasks[t].completed);
+            }
+        }
+        displayTodo(myTodos.container);
+    }
+})();
+
 function addTodo() {
     let myval = $(".input").val();
     if (myval != "") {
@@ -55,7 +68,7 @@ function addKey2(element, taskval, event, tasknum){
             $(element).val("");
             myTodos.container[tasknum].addTask(taskval);
             setTodo();
-            $(element).focus();
+            $(".input2").focus();
             break;
     }
 }
