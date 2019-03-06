@@ -12,8 +12,8 @@ class list{
         this.name = name;
         this.tasks = [];
     }
-    addTask(task){
-        this.tasks.push(task);
+    addTask(taskname){
+        this.tasks.push(new task(taskname));
     }
     removeTask(task){
         this.tasks.remove(task);

@@ -10,6 +10,7 @@
     <link href="css/style.css" rel="stylesheet">
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
     <script defer src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script defer src="objectstructure.js" rel="script"></script>
     <script defer src="main.js" rel="script"></script>
 </head>
 <body>
@@ -19,7 +20,7 @@
                 <!-- Title -->
                 <span class="mdl-layout-title">To Do's</span>
                 <div class="input-box">
-                    <input class="input" type="text" placeholder="Type To Do" onkeyup="addKey(this.value, event)"/>
+                    <input class="input" type="text" placeholder="Type To Do..." onkeyup="addKey(this.value, event)"/>
                     <button class="mdl-button mdl-js-button mdl-button--accent" onclick="addTodo()">Add To Do</button>
                 </div>
                 <div class="mdl-layout-spacer"></div>
@@ -27,7 +28,7 @@
         </header>
         <main class="mdl-layout__content">
             <div class="page-content">
-                <div class="task-box"></div>
+                <div class="list-box"></div>
             </div>
         </main>
     </div>
