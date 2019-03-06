@@ -4,7 +4,7 @@
         for(let l = 0; l < todos.length; l++){
             myTodos.add(todos[l].name);
             for(let t = 0; t < todos[l].tasks.length; t++){
-                myTodos.container[l].add(todos[l].tasks[t].name, todos[l].tasks[t].completed);
+                myTodos.container[l].addTask(todos[l].tasks[t].name);
             }
         }
         displayTodo(myTodos.container);
@@ -39,7 +39,7 @@ function displayTodo(listArray){
         }
         $(".list-box").append("<div class='demo-card-wide mdl-card mdl-shadow--2dp'>" +
             "<div class='mdl-card__title'>" +
-            "<h2 contenteditable='true' class='mdl-card__title-text'>" + listArray[l].name + "</h2>" +
+            "<h2 class='mdl-card__title-text'>" + listArray[l].name + "</h2>" +
             "</div>" +
             "<div class='mdl-card__supporting-text'>" +
             "</div>" +
@@ -65,10 +65,13 @@ function addKey(inputval, event){
 function addKey2(element, taskval, event, tasknum){
     switch(event.which){
         case 13:
-            $(element).val("");
-            myTodos.container[tasknum].addTask(taskval);
-            setTodo();
-            $(".input2").focus();
-            break;
+            let task = $(element).val();
+            if(task != "") {
+                myTodos.container[tasknum].addTask(taskval);
+                setTodo();
+                $(element).val("");
+                $(".input2").focus();
+                break;
+            }
     }
 }
