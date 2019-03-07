@@ -7,6 +7,8 @@ body {
   background-image: url("https://i.stack.imgur.com/8zEoh.png");
   background-repeat: no-repeat;
   background-size: cover; }
+  body #title {
+    font-size: 25px; }
   body .input-box {
     width: 70%;
     display: flex;
@@ -18,13 +20,16 @@ body {
       border-radius: 3px;
       font-size: 12px; }
     body .input-box button {
-      margin-left: 10px; }
+      margin-left: 5px; }
 
-.task-box {
+.input2 {
+  margin-bottom: 5px;
+  border: 1px solid lightgrey; }
+
+.list-box {
   width: 100%;
   display: flex;
   flex-wrap: wrap; }
 
-.checkbox {
-  margin-left: .05ex;
-  margin-bottom: 3px; }
+#cards {
+  margin: 10px; }

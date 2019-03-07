@@ -35,9 +35,11 @@ function displayTodo(listArray){
     for(let l = 0; l < listArray.length; l++){
         let listtasks = "";
         for(let t = 0; t < listArray[l].tasks.length; t++){
-            listtasks += "<div>"+ listArray[l].tasks[t].name +"</div>"
+            listtasks += "<div>"+ listArray[l].tasks[t].name +
+                "<input type='checkbox'/>" +
+                "</div>"
         }
-        $(".list-box").append("<div class='demo-card-wide mdl-card mdl-shadow--2dp'>" +
+        $(".list-box").append("<div id='cards' class='demo-card-wide mdl-card mdl-shadow--2dp'>" +
             "<div class='mdl-card__title'>" +
             "<h2 class='mdl-card__title-text'>" + listArray[l].name + "</h2>" +
             "</div>" +
@@ -48,7 +50,7 @@ function displayTodo(listArray){
             "<div class='task-box'>" + listtasks + "</div>" +
             "</div>" +
             "<div class='mdl-card__menu'>" +
-            "<input class='checkbox' type='checkbox'/>" +
+            "<input type='checkbox' onclick='completed(this)'/>" +
             "</div>" +
             "</div>");
     }
@@ -73,5 +75,11 @@ function addKey2(element, taskval, event, tasknum){
                 $(".input2").focus();
                 break;
             }
+    }
+}
+
+function markCompleted(element, index) {
+    if(element == true) {
+        myTodos.tasks[index].markCompleted()
     }
 }

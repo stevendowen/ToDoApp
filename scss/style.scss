@@ -8,6 +8,10 @@ body{
   background-repeat: no-repeat;
   background-size: cover;
 
+  #title{
+    font-size: 25px;
+  }
+
   .input-box{
     width: 70%;
     display: flex;
@@ -21,18 +25,22 @@ body{
       font-size: 12px;
     }
     button{
-      margin-left: 10px;
+      margin-left: 5px;
     }
   }
 }
-.task-box{
+.input2{
+  margin-bottom: 5px;
+  border: 1px solid lightgrey;
+}
+.list-box{
   width: 100%;
   display: flex;
   flex-wrap: wrap;
 }
 
-.checkbox{
-  margin-left: .05ex;
-  margin-bottom: 3px;
+#cards{
+  margin: 10px;
 }
+
 
