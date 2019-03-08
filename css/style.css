@@ -31,13 +31,13 @@ body {
   display: flex;
   flex-wrap: wrap; }
 
-#cards {
+.cards {
   margin: 10px; }
-  #cards .taskitem {
+  .cards .taskitem {
     display: flex;
     justify-content: space-between;
     margin-right: 8px; }
-  #cards .icons {
+  .cards .icons {
     display: flex;
     justify-content: center;
     align-items: center; }

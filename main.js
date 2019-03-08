@@ -38,23 +38,23 @@ function displayTodo(listArray){
         for(let t = 0; t < listArray[l].tasks.length; t++) {
             listtasks += `<div class="taskitem" id="task${t}">${listArray[l].tasks[t].name}
             <div class="icons">
-            <input onclick='markCompleted(this, ${l}, ${t})' type='checkbox'/>
-            <i class="fas fa-times"></i></div></div>`
+            <input id=${t}" onclick='markCompleted(this, ${l}, ${t})' type='checkbox'/>
+            <i class="fas fa-times" onclick="removeTask(${t})"></i></div></div>`
             }
-        $(".list-box").append("<div id='cards' class='demo-card-wide mdl-card mdl-shadow--2dp'>" +
-            "<div class='mdl-card__title'>" +
-            "<h2 class='mdl-card__title-text'>" + listArray[l].name + "</h2>" +
-            "</div>" +
-            "<div class='mdl-card__supporting-text'>" +
-            "</div>" +
-            "<div class='mdl-card__actions mdl-card--border'>" +
-            "<input class='input2' type='text' placeholder='Add list' onkeyup='addKey2(this, this.value, event, "+ l +")'/>" +
-            "<div>" + listtasks + "</div>" +
-            "</div>" +
-            "<div class='mdl-card__menu'>" +
-            "<input type='checkbox'/>" +
-            "</div>" +
-            "</div>");
+        $(".list-box").append(`<div id="cards${l}" class="demo-card-wide mdl-card mdl-shadow--2dp cards">
+            <div class='mdl-card__title'>
+            <h2 class='mdl-card__title-text'>${listArray[l].name}</h2>
+            </div>
+            <div class='mdl-card__supporting-text'>
+            </div>
+            <div class='mdl-card__actions mdl-card--border'>
+            <input class="input2" type="text" placeholder="Add list..." onkeyup="addKey2(this, this.value, event, ${l})"/>
+            <div>${listtasks}</div>
+            </div>
+            <div class='mdl-card__menu'>
+            <i class="fas fa-times" onclick="removeList(${l})"></i>
+            </div>
+            </div>`);
     }
 }
 
@@ -89,4 +89,12 @@ function markCompleted(element, lIndex,  tIndex) {
         myTodos.container[lIndex].tasks[tIndex].markIncomplete();
         $(`#task${tIndex}`).css("text-decoration", "none");
     }
+}
+
+function removeList(lIndex){
+    $(`#cards${lIndex}`).remove();
+}
+
+function removeTask(tIndex){
+    $(`#task${tIndex}`).remove();
 }
