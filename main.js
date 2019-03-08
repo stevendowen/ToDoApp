@@ -34,11 +34,13 @@ function getTodo(){
 function displayTodo(listArray){
     for(let l = 0; l < listArray.length; l++){
         let listtasks = "";
-        for(let t = 0; t < listArray[l].tasks.length; t++){
-            listtasks += "<div>"+ listArray[l].tasks[t].name +
-                "<input type='checkbox'/>" +
-                "</div>"
-        }
+
+        for(let t = 0; t < listArray[l].tasks.length; t++) {
+            listtasks += `<div class="taskitem" id="task${t}">${listArray[l].tasks[t].name}
+            <div class="icons">
+            <input onclick='markCompleted(this, ${l}, ${t})' type='checkbox'/>
+            <i class="fas fa-times"></i></div></div>`
+            }
         $(".list-box").append("<div id='cards' class='demo-card-wide mdl-card mdl-shadow--2dp'>" +
             "<div class='mdl-card__title'>" +
             "<h2 class='mdl-card__title-text'>" + listArray[l].name + "</h2>" +
@@ -47,10 +49,10 @@ function displayTodo(listArray){
             "</div>" +
             "<div class='mdl-card__actions mdl-card--border'>" +
             "<input class='input2' type='text' placeholder='Add list' onkeyup='addKey2(this, this.value, event, "+ l +")'/>" +
-            "<div class='task-box'>" + listtasks + "</div>" +
+            "<div>" + listtasks + "</div>" +
             "</div>" +
             "<div class='mdl-card__menu'>" +
-            "<input type='checkbox' onclick='completed(this)'/>" +
+            "<input type='checkbox'/>" +
             "</div>" +
             "</div>");
     }
@@ -78,8 +80,13 @@ function addKey2(element, taskval, event, tasknum){
     }
 }
 
-function markCompleted(element, index) {
-    if(element == true) {
-        myTodos.tasks[index].markCompleted()
+function markCompleted(element, lIndex,  tIndex) {
+    if(element.checked == true) {
+        myTodos.container[lIndex].tasks[tIndex].markCompleted();
+        $(`#task${tIndex}`).css("text-decoration", "line-through");
+    }
+    else{
+        myTodos.container[lIndex].tasks[tIndex].markIncomplete();
+        $(`#task${tIndex}`).css("text-decoration", "none");
     }
 }

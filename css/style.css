@@ -33,3 +33,11 @@ body {
 
 #cards {
   margin: 10px; }
+  #cards .taskitem {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 8px; }
+  #cards .icons {
+    display: flex;
+    justify-content: center;
+    align-items: center; }

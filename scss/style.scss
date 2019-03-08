@@ -39,8 +39,19 @@ body{
   flex-wrap: wrap;
 }
 
-#cards{
+#cards {
   margin: 10px;
-}
 
+  .taskitem {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 8px;
+  }
+
+  .icons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
