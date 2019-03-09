@@ -27,7 +27,6 @@ function setTodo(){
 function getTodo(){
     $(".list-box").html("");
     let todoObj = JSON.parse(localStorage.allTodos);
-    console.log(todoObj);
     displayTodo(todoObj);
 }
 
