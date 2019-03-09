@@ -36,19 +36,21 @@ function displayTodo(listArray){
         let listtasks = "";
 
         for(let t = 0; t < listArray[l].tasks.length; t++) {
-            listtasks += `<div class="taskitem" id="task${t}">${listArray[l].tasks[t].name}
+            listtasks += `<div class="taskitem">
+            <span contenteditable="true" onfocusout="renameTask(this.innerText, ${l}, ${t})">${listArray[l].tasks[t].name}</span>
             <div class="icons">
-            <input id=${t}" onclick='markCompleted(this, ${l}, ${t})' type='checkbox'/>
-            <i class="fas fa-times" onclick="removeTask(${t})"></i></div></div>`
+            <input onclick='markCompleted(this, ${l}, ${t})' type='checkbox'/>
+            <i class="fas fa-times" onclick="removeTask(this, ${l}, ${t})"></i></div></div>`
             }
         $(".list-box").append(`<div id="cards${l}" class="demo-card-wide mdl-card mdl-shadow--2dp cards">
             <div class='mdl-card__title'>
-            <h2 class='mdl-card__title-text'>${listArray[l].name}</h2>
+            <h2 contenteditable='true' onfocusout="renameList(this.innerText, ${l})" class='mdl-card__title-text'>
+            ${listArray[l].name}</h2>
             </div>
             <div class='mdl-card__supporting-text'>
             </div>
             <div class='mdl-card__actions mdl-card--border'>
-            <input class="input2" type="text" placeholder="Add list..." onkeyup="addKey2(this, this.value, event, ${l})"/>
+            <input type="text" placeholder="Add list..." onkeyup="addKey2(this, this.value, event, ${l})"/>
             <div>${listtasks}</div>
             </div>
             <div class='mdl-card__menu'>
@@ -74,7 +76,6 @@ function addKey2(element, taskval, event, tasknum){
                 myTodos.container[tasknum].addTask(taskval);
                 setTodo();
                 $(element).val("");
-                $(".input2").focus();
                 break;
             }
     }
@@ -83,18 +84,34 @@ function addKey2(element, taskval, event, tasknum){
 function markCompleted(element, lIndex,  tIndex) {
     if(element.checked == true) {
         myTodos.container[lIndex].tasks[tIndex].markCompleted();
-        $(`#task${tIndex}`).css("text-decoration", "line-through");
+        $(element).parent(lIndex).parent(tIndex).css("text-decoration", "line-through");
     }
     else{
         myTodos.container[lIndex].tasks[tIndex].markIncomplete();
-        $(`#task${tIndex}`).css("text-decoration", "none");
+        $(element).parent(lIndex).parent(tIndex).css("text-decoration", "none");
     }
 }
 
 function removeList(lIndex){
+    myTodos.container.splice(lIndex, 1);
     $(`#cards${lIndex}`).remove();
+    setTodo();
 }
 
-function removeTask(tIndex){
-    $(`#task${tIndex}`).remove();
+function removeTask(element, lIndex, tIndex){
+        $(element).parent(lIndex).parent(tIndex).slideUp(400, function () {
+            myTodos.container[lIndex].tasks.splice(tIndex, 1);
+            $(element).parent(lIndex).parent(tIndex).remove();
+            setTodo();
+    });
+}
+
+function renameList(newName, lIndex){
+    myTodos.container[lIndex].renameList(newName);
+    setTodo();
+}
+
+function renameTask(newName, lIndex, tIndex){
+    myTodos.container[lIndex].tasks[tIndex].renameTask(newName);
+    setTodo();
 }

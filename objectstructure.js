@@ -15,9 +15,6 @@ class list{
     addTask(taskname){
         this.tasks.push(new task(taskname));
     }
-    removeTask(){
-        this.tasks.remove();
-    }
     renameList(name){
         this.name = name;
     }
