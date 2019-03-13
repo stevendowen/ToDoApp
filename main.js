@@ -20,6 +20,7 @@ function addTodo() {
     }
 }
 function setTodo(){
+    console.log(myTodos.container);
     localStorage.setItem("allTodos", JSON.stringify(myTodos.container));
     getTodo();
 }
@@ -35,10 +36,14 @@ function displayTodo(listArray){
         let listtasks = "";
 
         for(let t = 0; t < listArray[l].tasks.length; t++) {
+            let completedclassname = '';
+            if(listArray[l].tasks[t].completed == true){
+                completedclassname = 'checked';
+            }
             listtasks += `<div class="taskitem">
-            <span contenteditable="true" onfocusout="renameTask(this.innerText, ${l}, ${t})">${listArray[l].tasks[t].name}</span>
+            <span class="${completedclassname}" contenteditable="true" onfocusout="renameTask(this.innerText, ${l}, ${t})">${listArray[l].tasks[t].name}</span>
             <div class="icons">
-            <input onclick='markCompleted(this, ${l}, ${t})' type='checkbox'/>
+            <input onclick='markCompleted(this, ${l}, ${t})' type='checkbox' ${completedclassname}/>
             <i class="fas fa-times" onclick="removeTask(this, ${l}, ${t})"></i></div></div>`
             }
         $(".list-box").append(`<div id="cards${l}" class="demo-card-wide mdl-card mdl-shadow--2dp cards">
@@ -81,13 +86,15 @@ function addKey2(element, taskval, event, tasknum){
 }
 
 function markCompleted(element, lIndex,  tIndex) {
-    if(element.checked == true) {
+    if(element.checked === true) {
         myTodos.container[lIndex].tasks[tIndex].markCompleted();
-        $(element).parent(lIndex).parent(tIndex).css("text-decoration", "line-through");
+        $(element).parent(lIndex).parent(tIndex).addClass("completed");
+        setTodo();
     }
     else{
         myTodos.container[lIndex].tasks[tIndex].markIncomplete();
-        $(element).parent(lIndex).parent(tIndex).css("text-decoration", "none");
+        $(element).parent(lIndex).parent(tIndex).removeClass("completed");
+        setTodo();
     }
 }
 
