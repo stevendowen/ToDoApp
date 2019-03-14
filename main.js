@@ -20,7 +20,6 @@ function addTodo() {
     }
 }
 function setTodo(){
-    console.log(myTodos.container);
     localStorage.setItem("allTodos", JSON.stringify(myTodos.container));
     getTodo();
 }
